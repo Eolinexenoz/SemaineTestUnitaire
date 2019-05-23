@@ -8,14 +8,13 @@ class InputParser():
         listwithoutspace = self.parse_space(enteredstring)
         if self.test_d(listwithoutspace) == 0:
             return 0
+        elif self.test_number(listwithoutspace) == 0:
+            return 0
         else:
-            listwithoutd = self.parse_d(listwithoutspace)
-        print(listwithoutd)
-        return 1
+            return 1
 
     def parse_space(self, enteredstring):
-        osef = str(enteredstring.split(" "))
-        print(osef)
+        osef = enteredstring.split(" ")
         return osef
 
     def test_d(self, listwithoutspace):
@@ -28,7 +27,15 @@ class InputParser():
                     return 0
         return 1
 
-    def parse_d(self, listwithoutspace):
-        for var in listwithoutspace:
-            listwithoutd = var.split("d")
-        return listwithoutd
+    def test_number(self, listwithoutspace):
+        for string in listwithoutspace:
+            tmp = string.split("d")
+            for char in tmp:
+                if isinstance(int(char), int):
+                    continue
+                else:
+                    return 0
+
+
+
+
